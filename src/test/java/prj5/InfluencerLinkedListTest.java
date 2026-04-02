@@ -1,8 +1,17 @@
 package prj5;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import student.TestCase;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 // -------------------------------------------------------------------------
 /**
@@ -12,7 +21,6 @@ import student.TestCase;
  * @version Nov 18, 2025
  */
 public class InfluencerLinkedListTest
-    extends TestCase
 {
     // ~ Fields ................................................................
     private InfluencerLinkedList l1;
@@ -25,6 +33,7 @@ public class InfluencerLinkedListTest
     /**
      * sets up test cases
      */
+    @BeforeEach
     public void setUp()
     {
         l1 = new InfluencerLinkedList();
@@ -44,6 +53,7 @@ public class InfluencerLinkedListTest
      * tests size()
      */
 
+    @Test
     public void testSize()
     {
         assertEquals(0, l1.size());
@@ -57,6 +67,7 @@ public class InfluencerLinkedListTest
     /**
      * tests isEmpty()
      */
+    @Test
     public void testIsEmpty()
     {
         assertTrue(l1.isEmpty());
@@ -69,6 +80,7 @@ public class InfluencerLinkedListTest
     /**
      * tests clear()
      */
+    @Test
     public void testClear()
     {
         l1.add(coco);
@@ -81,18 +93,12 @@ public class InfluencerLinkedListTest
     /**
      * tests add()
      */
+    @Test
     public void testAdd()
     {
-        // tests if exception is thrown if influencer == null
-        Exception exception = null;
-        try
-        {
-            l1.add(null);
-        }
-        catch (IllegalArgumentException e)
-        {
-            exception = e;
-        }
+        Exception exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> l1.add(null));
         assertNotNull(exception);
 
         l1.add(coco);
@@ -107,34 +113,21 @@ public class InfluencerLinkedListTest
     /**
      * tests get()
      */
+    @Test
     public void testGet()
     {
         l1.add(coco);
         assertEquals(coco, l1.get(0));
         assertEquals(john, l2.get(1));
 
-        Exception exception = null;
-        try
-        {
-            l2.get(-2);
-
-        }
-        catch (IndexOutOfBoundsException e)
-        {
-            exception = e;
-        }
+        Exception exception = assertThrows(
+            IndexOutOfBoundsException.class,
+            () -> l2.get(-2));
         assertNotNull(exception);
 
-        Exception exception2 = null;
-        try
-        {
-            l2.get(5);
-
-        }
-        catch (IndexOutOfBoundsException e)
-        {
-            exception2 = e;
-        }
+        Exception exception2 = assertThrows(
+            IndexOutOfBoundsException.class,
+            () -> l2.get(5));
         assertNotNull(exception2);
     }
 
@@ -143,6 +136,7 @@ public class InfluencerLinkedListTest
     /**
      * tests findByChannelName()
      */
+    @Test
     public void testFindByChannelName()
     {
         l1.add(coco);
@@ -159,6 +153,7 @@ public class InfluencerLinkedListTest
     /**
      * tests sort(), insertionSort(), and insertInOrder()
      */
+    @Test
     public void testSort()
     {
         Influencer creator =
@@ -207,6 +202,7 @@ public class InfluencerLinkedListTest
     /**
      * tests iterator()
      */
+    @Test
     public void testIterator()
     {
         // tests if iterates in correct order
@@ -229,16 +225,9 @@ public class InfluencerLinkedListTest
 
         // tests if throws NoSuchElementException
 
-        Exception exception = null;
-        try
-        {
-            iterl1.next();
-        }
-        catch (NoSuchElementException e)
-        {
-            exception = e;
-
-        }
+        Exception exception = assertThrows(
+            NoSuchElementException.class,
+            iterl1::next);
         assertNotNull(exception);
 
     }

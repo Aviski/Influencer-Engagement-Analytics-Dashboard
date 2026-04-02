@@ -1,6 +1,9 @@
 package prj5;
 
-import student.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * unit tests for Influencer
@@ -9,7 +12,6 @@ import student.TestCase;
  * @version 11/17/25
  */
 public class InfluencerTest
-    extends TestCase
 {
 
     /**
@@ -35,6 +37,7 @@ public class InfluencerTest
     /**
      * sets up influencer with monthlyStats to be tested
      */
+    @BeforeEach
     public void setUp()
     {
         abby = new Influencer("abby123", "Abby's Life", "Brazil", "Beauty");
@@ -50,6 +53,7 @@ public class InfluencerTest
     /**
      * tests the getChannelName method
      */
+    @Test
     public void testGetChannelName()
     {
         assertEquals("Abby's Life", abby.getChannelName());
@@ -59,6 +63,7 @@ public class InfluencerTest
     /**
      * tests the getInfluencerUsername method
      */
+    @Test
     public void testGetInfluencerUsername()
     {
         assertEquals("abby123", abby.getInfluencerUsername());
@@ -68,6 +73,7 @@ public class InfluencerTest
     /**
      * tests the getCountry method
      */
+    @Test
     public void testGetCountry()
     {
         assertEquals("Brazil", abby.getCountry());
@@ -77,6 +83,7 @@ public class InfluencerTest
     /**
      * tests the getTopic method
      */
+    @Test
     public void testGetTopic()
     {
         assertEquals("Beauty", abby.getTopic());
@@ -86,6 +93,7 @@ public class InfluencerTest
     /**
      * tests the addMonthlyStats method and getMonthlyStats method
      */
+    @Test
     public void testAddandGetMonthlyStats()
     {
         assertEquals(jan, abby.getMonthlyStats("JANUARY"));
@@ -107,6 +115,7 @@ public class InfluencerTest
     /**
      * tests the getEngagement method
      */
+    @Test
     public void testGetEngagment()
     {
         assertEquals(
@@ -141,6 +150,7 @@ public class InfluencerTest
     /**
      * tests the getEngagementString method
      */
+    @Test
     public void testGetEngagmentMissingData()
     {
         Influencer steve =
@@ -166,6 +176,7 @@ public class InfluencerTest
     /**
      * tests getEngagement behavior when denominators are zero
      */
+    @Test
     public void testGetEngagementZeroDenominator()
     {
         Influencer zero = new Influencer("zero", "Zero Denom", "US", "Test");
@@ -190,6 +201,7 @@ public class InfluencerTest
     /**
      * tests that getEngagement returns N/A when metric or period is null
      */
+    @Test
     public void testGetEngagementNullArguments()
     {
         assertEquals("N/A", abby.getEngagement(null, PeriodType.JANUARY));

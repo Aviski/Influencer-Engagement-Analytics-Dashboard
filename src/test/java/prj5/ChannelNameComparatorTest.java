@@ -1,6 +1,10 @@
 package prj5;
 
-import student.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 // -------------------------------------------------------------------------
 /**
@@ -10,7 +14,6 @@ import student.TestCase;
  * @version Nov 20, 2025
  */
 public class ChannelNameComparatorTest
-    extends TestCase
 {
     // ~ Fields ................................................................
     private Influencer abby;
@@ -20,6 +23,7 @@ public class ChannelNameComparatorTest
     /**
      * sets up Influencers to test methods on
      */
+    @BeforeEach
     public void setUp()
     {
         abby = new Influencer("abby1234", "Abby Beauty", "Brazil", "Beauty");
@@ -32,6 +36,7 @@ public class ChannelNameComparatorTest
     /**
      * tests compare()
      */
+    @Test
     public void testCompare()
     {
 

@@ -1,6 +1,12 @@
 package prj5;
 
-import student.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * // -------------------------------------------------------------------------
@@ -10,7 +16,6 @@ import student.TestCase;
  * @version Nov 20, 2025
  */
 public class EngagementComparatorTest
-    extends TestCase
 {
     private Influencer high;
     private Influencer mid;
@@ -21,6 +26,7 @@ public class EngagementComparatorTest
     /**
      * sets up a few Influencer objects with known engagement values
      */
+    @BeforeEach
     public void setUp()
     {
         high = new Influencer("userHigh", "HighChannel", "US", "Test");
@@ -54,36 +60,25 @@ public class EngagementComparatorTest
      * tests that the constructor throws an exception if metric or period is
      * null
      */
-    @SuppressWarnings("unused")
+    @Test
     public void testConstructorNullArguments()
     {
-        Exception ex = null;
-        try
-        {
-            new EngagementComparator(null, PeriodType.JANUARY);
-        }
-        catch (IllegalArgumentException e)
-        {
-            ex = e;
-        }
-        assertNotNull(ex);
+        IllegalArgumentException first = assertThrows(
+            IllegalArgumentException.class,
+            () -> new EngagementComparator(null, PeriodType.JANUARY));
+        assertNotNull(first);
 
-        ex = null;
-        try
-        {
-            new EngagementComparator(MetricType.TRADITIONAL, null);
-        }
-        catch (IllegalArgumentException e)
-        {
-            ex = e;
-        }
-        assertNotNull(ex);
+        IllegalArgumentException second = assertThrows(
+            IllegalArgumentException.class,
+            () -> new EngagementComparator(MetricType.TRADITIONAL, null));
+        assertNotNull(second);
     }
 
 
     /**
      * tests that influencers are ordered by engagement in descending order
      */
+    @Test
     public void testCompareDescendingOrder()
     {
         assertTrue(tradJanComparator.compare(high, mid) < 0);
@@ -96,6 +91,7 @@ public class EngagementComparatorTest
      * tests that when engagement is tied, the comparator falls back to
      * comparing channel names alphabetically
      */
+    @Test
     public void testCompareTieBreakByName()
     {
         Influencer a = new Influencer("userA", "Alpha", "US", "Test");
@@ -116,6 +112,7 @@ public class EngagementComparatorTest
      * tests that influencers with N/A engagement are treated as having the
      * lowest engagement and therefore are ordered
      */
+    @Test
     public void testCompareWithNA()
     {
         assertEquals(
@@ -130,6 +127,7 @@ public class EngagementComparatorTest
     /**
      * tests handling of null influencer references
      */
+    @Test
     public void testCompareWithNullInfluencers()
     {
         assertEquals(0, tradJanComparator.compare(null, null));

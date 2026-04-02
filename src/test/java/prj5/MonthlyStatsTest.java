@@ -1,6 +1,9 @@
 package prj5;
 
-import student.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * unit tests for MonthlyStats
@@ -9,7 +12,6 @@ import student.TestCase;
  * @version 11/17/25
  */
 public class MonthlyStatsTest
-    extends TestCase
 {
     /**
      * sample MonthlyStats object used in the tests
@@ -19,6 +21,7 @@ public class MonthlyStatsTest
     /**
      * sets up MonthlyStats object before each test method
      */
+    @BeforeEach
     public void setUp()
     {
         stats = new MonthlyStats("January", 100, 10, 1000, 20, 500);
@@ -29,6 +32,7 @@ public class MonthlyStatsTest
      * makes sure the constructor correctly stores all the field values and the
      * getters return the right things
      */
+    @Test
     public void testConstructorAndGetters()
     {
         assertEquals("January", stats.getMonth());
@@ -44,6 +48,7 @@ public class MonthlyStatsTest
      * makes sure that getTotalInteractions() returns the sum of the likes and
      * comments
      */
+    @Test
     public void testGetTotalInteractions()
     {
         assertEquals(120, stats.getTotalInteractions());
@@ -54,6 +59,7 @@ public class MonthlyStatsTest
      * makes sure that getTotalInteractions() works for a case where likes and
      * comments are zero
      */
+    @Test
     public void testGetTotalInteractionsWithZero()
     {
         MonthlyStats zeroStats =
