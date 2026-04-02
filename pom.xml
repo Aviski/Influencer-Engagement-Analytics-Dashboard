@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.avipatel</groupId>
-    <artifactId>influencer-engagement-analytics-dashboard</artifactId>
+    <artifactId>influencer-engagement-analytics</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Social Media Engagement Analyzer</name>
+    <name>Influencer Engagement Analytics</name>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
@@ -35,7 +35,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
-                    <mainClass>prj5.ProjectRunner</mainClass>
+                    <mainClass>analytics.ProjectRunner</mainClass>
                 </configuration>
             </plugin>
         </plugins>

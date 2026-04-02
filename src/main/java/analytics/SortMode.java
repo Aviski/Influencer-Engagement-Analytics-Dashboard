@@ -1,4 +1,4 @@
-package prj5;
+package analytics;
 
 /**
  * Represents how the influencers should be ordered when they're displayed in

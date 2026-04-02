@@ -1,4 +1,4 @@
-package prj5;
+package analytics;
 
 /**
  * Represents the type of engagement metric to compute for an influencer

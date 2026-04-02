@@ -1,4 +1,4 @@
-package prj5;
+package analytics;
 
 /**
  * Represents the engagement statistics for a single influencer in one month

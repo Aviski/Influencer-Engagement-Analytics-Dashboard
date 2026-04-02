@@ -1,4 +1,4 @@
-package prj5;
+package analytics;
 
 import java.util.Comparator;
 import java.util.Iterator;

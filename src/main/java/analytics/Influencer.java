@@ -1,4 +1,4 @@
-package prj5;
+package analytics;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

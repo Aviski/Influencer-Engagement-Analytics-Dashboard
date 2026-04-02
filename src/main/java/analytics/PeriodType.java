@@ -1,4 +1,4 @@
-package prj5;
+package analytics;
 
 /**
  * Represents the time period for which engagement is calculated and displayed
